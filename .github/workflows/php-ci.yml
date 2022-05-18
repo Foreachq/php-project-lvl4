@@ -1,0 +1,31 @@
+name: PHP CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup project
+        run: make setup
+
+      - name: Start container
+        run: make up
+
+      - name: Check lint
+        run: make lint
+
+      - name: Run test & publish code coverage
+        run:
+          docker-compose run -e XDEBUG_MODE=coverage web php artisan test --coverage-clover build/logs/clover.xml;
+          docker-compose run web ../cc-reporter format-coverage ./build/logs/clover.xml -t clover --debug;
+          docker-compose run -e CC_TEST_REPORTER_ID=${{ secrets.CC_TEST_REPORTER_ID }} web ../cc-reporter upload-coverage
+      - name: Down container
+        run: make down
