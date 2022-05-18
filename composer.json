@@ -1,9 +1,16 @@
 {
-    "name": "laravel/laravel",
+    "name": "hexlet/code",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Task manager web-application",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Ilya Golovin",
+            "email": "foreachq@gmail.com"
+        }
+    ],
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
@@ -57,6 +64,5 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "minimum-stability": "dev",
     "prefer-stable": true
 }
