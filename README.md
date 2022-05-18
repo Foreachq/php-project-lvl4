@@ -4,3 +4,7 @@
 <a href="https://codeclimate.com/github/Foreachq/php-project-lvl4/test_coverage"><img src="https://api.codeclimate.com/v1/badges/6ddb408357da67cbb956/test_coverage" /></a>
 
 # Task Manager
+
+## Demo
+
+Project demo can be viewed [<ins>**here**</ins>](http://foreachq-task-manager.herokuapp.com/).
