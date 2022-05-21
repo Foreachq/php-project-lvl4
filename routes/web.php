@@ -9,3 +9,5 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::get('/lang/{lang}', [App\Http\Controllers\HomeController::class, 'changeLang'])
     ->name('changeLang');
+
+Route::resource('task_statuses', App\Http\Controllers\TaskStatusController::class);

@@ -9,4 +9,9 @@ return [
     'email' => 'Email',
     'password' => 'Пароль',
     'password_confirm' => 'Подтверждение',
+    'forgot_password' => 'Забыли пароль?',
+    'remember_me' => 'Запомнить меня',
+    'tasks' => 'Задачи',
+    'statuses' => 'Статусы',
+    'labels' => 'Метки',
 ];
