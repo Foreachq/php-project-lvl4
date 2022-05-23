@@ -35,6 +35,7 @@ class TaskStatusController extends Controller
         $status = new TaskStatus();
         $status->fill($request->all());
         $status->save();
+        flash(__('messages.flash.status.success.create'))->success();
 
         return redirect()->route('task_statuses.index');
     }
@@ -48,6 +49,7 @@ class TaskStatusController extends Controller
     {
         $taskStatus->fill($request->all());
         $taskStatus->save();
+        flash(__('messages.flash.status.success.update'))->success();
 
         return redirect()->route('task_statuses.index');
     }
@@ -55,6 +57,7 @@ class TaskStatusController extends Controller
     public function destroy(TaskStatus $taskStatus): RedirectResponse
     {
         $taskStatus->delete();
+        flash(__('messages.flash.status.success.delete'))->success();
 
         return redirect()->route('task_statuses.index');
     }

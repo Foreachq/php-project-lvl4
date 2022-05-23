@@ -5,11 +5,9 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        <h1 class="mb-5">@lang('views.status.edit.title')</h1>
-        {{ Form::model($taskStatus, ['route' => ['task_statuses.update', $taskStatus], 'method' => 'PATCH', 'class' => 'w-50']) }}
-        @include('task_statuses.form')
-        {{ Form::submit(__('views.status.edit.submit'), ['class' => 'btn btn-primary mt-3']) }}
-        {{ Form::close() }}
-    </div>
+    <h1 class="mb-5">@lang('views.status.edit.title')</h1>
+    {{ Form::model($taskStatus, ['route' => ['task_statuses.update', $taskStatus], 'method' => 'PATCH', 'class' => 'w-50']) }}
+    @include('task_statuses.form')
+    {{ Form::submit(__('views.status.edit.submit'), ['class' => 'btn btn-primary mt-3']) }}
+    {{ Form::close() }}
 @endsection
