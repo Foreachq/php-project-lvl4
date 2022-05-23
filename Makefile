@@ -13,7 +13,7 @@ down:
 setup:
 	cp -n .env.example .env|| true
 	docker-compose up -d
-	docker-compose run web php artisan migrate:refresh --force
+	docker-compose run web php artisan migrate:refresh --force --seed
 	docker-compose run web php artisan key:gen --ansi
 	docker-compose down
 
