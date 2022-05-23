@@ -23,5 +23,15 @@ return [
             'destroy' => 'Delete',
             'edit' => 'Edit',
         ],
-    ]
+        'create' => [
+            'title' => 'Create status',
+            'name' => 'Name',
+            'submit' => 'Create'
+        ],
+        'edit' => [
+            'title' => 'Edit status',
+            'name' => 'Name',
+            'submit' => 'Update'
+        ],
+    ],
 ];

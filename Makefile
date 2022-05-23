@@ -4,6 +4,9 @@ shell:
 up:
 	docker-compose up -d
 
+up-logs:
+	docker-compose up
+
 down:
 	docker-compose down
 
