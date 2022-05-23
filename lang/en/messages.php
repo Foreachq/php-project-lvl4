@@ -13,6 +13,9 @@ return [
                 'create' => 'Status created successfully',
                 'delete' => 'Status deleted successfully',
                 'update' => 'Status updated successfully',
+            ],
+            'fail' => [
+                'delete' => 'Couldn\'t delete status',
             ]
         ]
     ],
