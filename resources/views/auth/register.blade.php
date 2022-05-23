@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    @lang('views.auth.register.title')
+    @lang('views.auth.register')
 @endsection
 
 @section('content')

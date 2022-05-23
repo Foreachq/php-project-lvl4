@@ -4,8 +4,6 @@ return [
     'auth' => [
         'login' => 'Login',
         'register' => 'Sign Up',
-        'login.title' => 'Login',
-        'register.title' => 'Sign Up',
         'name' => 'Name',
         'email' => 'Email',
         'password' => 'Password',
