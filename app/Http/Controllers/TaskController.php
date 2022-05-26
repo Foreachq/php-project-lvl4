@@ -49,6 +49,9 @@ class TaskController extends Controller
 
         $task = new Task();
         $this->fillTask($request, $task);
+        $task->creator()->associate(Auth::user());
+
+        $task->save();
 
         flash(__('messages.flash.task.success.create'))->success();
 
@@ -70,6 +73,7 @@ class TaskController extends Controller
         Gate::authorize('update', $task);
 
         $this->fillTask($request, $task);
+        $task->save();
 
         flash(__('messages.flash.task.success.update'))->success();
 
@@ -78,7 +82,7 @@ class TaskController extends Controller
 
     public function destroy(Task $task): RedirectResponse
     {
-        Gate::authorize('delete', Task::class);
+        Gate::authorize('delete', $task);
 
         $task->delete();
 
@@ -97,10 +101,7 @@ class TaskController extends Controller
         $executorId = $request->get('assigned_to_id');
         $executor = TaskStatus::find($executorId);
 
-        $task->creator()->associate(Auth::user());
         $task->executor()->associate($executor);
         $task->status()->associate($status);
-
-        $task->save();
     }
 }
