@@ -12,7 +12,7 @@ class Task extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
     ];
 
     public function creator(): BelongsTo

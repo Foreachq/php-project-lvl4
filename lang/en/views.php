@@ -46,6 +46,9 @@ return [
         ],
         'edit' => [
             'title' => 'Edit task',
+        ],
+        'show' => [
+            'title' => 'Task',
         ]
     ]
 ];
