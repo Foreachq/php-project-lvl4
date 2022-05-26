@@ -24,7 +24,7 @@ class TaskStatusControllerUnauthorizedTest extends TestCase
 
     public function testIndex(): void
     {
-        $response = $this->get('/task_statuses/');
+        $response = $this->get(route('task_statuses.index'));
         $response->assertOk();
 
         $response->assertDontSee(__('views.buttons.delete'));
@@ -36,10 +36,10 @@ class TaskStatusControllerUnauthorizedTest extends TestCase
 
     public function testUpdate(): void
     {
-        $response = $this->get('/task_statuses/1/edit');
+        $response = $this->get(route('task_statuses.edit', 1));
         $response->assertStatus(403);
 
-        $response = $this->patch('/task_statuses/1', [
+        $response = $this->patch(route('task_statuses.update', 1), [
             'name' => 'updatedStatus'
         ]);
         $response->assertStatus(403);
@@ -47,10 +47,10 @@ class TaskStatusControllerUnauthorizedTest extends TestCase
 
     public function testCreate(): void
     {
-        $response = $this->get('/task_statuses/create');
+        $response = $this->get(route('task_statuses.create'));
         $response->assertStatus(403);
 
-        $response = $this->post('/task_statuses/', [
+        $response = $this->post(route('task_statuses.store'), [
             'name' => 'updatedStatus'
         ]);
         $response->assertStatus(403);
@@ -58,7 +58,7 @@ class TaskStatusControllerUnauthorizedTest extends TestCase
 
     public function testDelete(): void
     {
-        $response = $this->delete('/task_statuses/1');
+        $response = $this->delete(route('task_statuses.destroy', 1));
         $response->assertStatus(403);
     }
 }

@@ -25,13 +25,13 @@ class TaskControllerUnauthorizedTest extends TestCase
 
     public function testShow(): void
     {
-        $response = $this->get('/tasks/1');
+        $response = $this->get(route('tasks.show', 1));
         $response->assertStatus(403);
     }
 
     public function testIndex(): void
     {
-        $response = $this->get('/tasks/');
+        $response = $this->get(route('tasks.index'));
         $response->assertOk();
 
         $response->assertDontSee(__('views.buttons.delete'));
@@ -43,10 +43,10 @@ class TaskControllerUnauthorizedTest extends TestCase
 
     public function testUpdate(): void
     {
-        $response = $this->get('/tasks/1/edit');
+        $response = $this->get(route('tasks.edit', 1));
         $response->assertStatus(403);
 
-        $this->patch('/tasks/1', [
+        $this->patch(route('tasks.update', 1), [
             'name' => 'updatedTask',
             'status_id' => '1'
         ]);
@@ -55,10 +55,10 @@ class TaskControllerUnauthorizedTest extends TestCase
 
     public function testCreate(): void
     {
-        $response = $this->get('/tasks/create');
+        $response = $this->get(route('tasks.create'));
         $response->assertStatus(403);
 
-        $response = $this->post('/tasks/', [
+        $response = $this->post(route('tasks.store'), [
             'name' => 'newTask',
             'status_id' => '1'
         ]);
@@ -67,7 +67,7 @@ class TaskControllerUnauthorizedTest extends TestCase
 
     public function testDelete(): void
     {
-        $response = $this->delete('/tasks/1');
+        $response = $this->delete(route('tasks.destroy', 1));
         $response->assertStatus(403);
     }
 }

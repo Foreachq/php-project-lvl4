@@ -39,7 +39,7 @@ class TaskControllerAuthorizedTest extends TestCase
 
     public function testShow(): void
     {
-        $response = $this->get('/tasks/1');
+        $response = $this->get(route('tasks.show', 1));
         $response->assertOk();
 
         $response->assertSee('testTask');
@@ -47,7 +47,7 @@ class TaskControllerAuthorizedTest extends TestCase
 
     public function testIndex(): void
     {
-        $response = $this->get('/tasks/');
+        $response = $this->get(route('tasks.index'));
         $response->assertOk();
 
         $response->assertSee(__('views.buttons.delete'));
@@ -59,10 +59,10 @@ class TaskControllerAuthorizedTest extends TestCase
 
     public function testUpdate(): void
     {
-        $response = $this->get('/tasks/1/edit');
+        $response = $this->get(route('tasks.edit', 1));
         $response->assertOk();
 
-        $this->patch('/tasks/1', [
+        $this->patch(route('tasks.update', 1), [
             'name' => 'updatedTask',
             'status_id' => '1'
         ]);
@@ -74,10 +74,10 @@ class TaskControllerAuthorizedTest extends TestCase
 
     public function testUpdateForeignTask(): void
     {
-        $response = $this->get('/tasks/2/edit');
+        $response = $this->get(route('tasks.edit', 2));
         $response->assertOk();
 
-        $this->patch('/tasks/2', [
+        $this->patch(route('tasks.update', 2), [
             'name' => 'updatedForeignTask',
             'status_id' => '1'
         ]);
@@ -89,10 +89,10 @@ class TaskControllerAuthorizedTest extends TestCase
 
     public function testCreate(): void
     {
-        $response = $this->get('/tasks/create');
+        $response = $this->get(route('tasks.create'));
         $response->assertOk();
 
-        $response = $this->post('/tasks/', [
+        $response = $this->post(route('tasks.store'), [
             'name' => 'newTask',
             'status_id' => '1'
         ]);
@@ -105,7 +105,7 @@ class TaskControllerAuthorizedTest extends TestCase
 
     public function testDelete(): void
     {
-        $response = $this->delete('/tasks/1');
+        $response = $this->delete(route('tasks.destroy', 1));
         $response->assertRedirect(route('tasks.index'));
 
         $this->assertDatabaseMissing('tasks', [
@@ -115,7 +115,7 @@ class TaskControllerAuthorizedTest extends TestCase
 
     public function testDeleteForeignTask(): void
     {
-        $response = $this->delete('/tasks/2');
+        $response = $this->delete(route('tasks.destroy', 2));
         $response->assertStatus(403);
     }
 }
