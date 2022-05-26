@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('title')
-    @lang('views.status.title')
-@endsection
-
 @section('content')
 <h1 class="mb-5">@lang('layouts.app.statuses')</h1>
 @can('create', App\Models\TaskStatus::class)

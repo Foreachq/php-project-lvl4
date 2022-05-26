@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('title')
-    @lang('views.task.title')
-@endsection
-
 @section('content')
     <h1 class="mb-5">@lang('views.task.title')</h1>
     <div class="d-flex mb-3">

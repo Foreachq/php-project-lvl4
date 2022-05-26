@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('title')
-    @lang('views.task.show.title'): {{ $task->name }}
-@endsection
-
 @section('content')
     <h1 class="mb-5">
         @lang('views.task.show.title'): {{ $task->name }}
