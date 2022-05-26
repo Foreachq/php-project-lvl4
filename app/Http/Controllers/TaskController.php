@@ -43,6 +43,8 @@ class TaskController extends Controller
         $task = new Task();
         $this->fillTask($request, $task);
 
+        flash(__('messages.flash.task.success.create'))->success();
+
         return redirect()->route('tasks.index');
     }
 
@@ -58,12 +60,16 @@ class TaskController extends Controller
     {
         $this->fillTask($request, $task);
 
+        flash(__('messages.flash.task.success.update'))->success();
+
         return redirect()->route('tasks.index');
     }
 
     public function destroy(Task $task): RedirectResponse
     {
         $task->delete();
+
+        flash(__('messages.flash.task.success.delete'))->success();
 
         return redirect()->route('tasks.index');
     }

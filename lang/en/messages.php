@@ -24,6 +24,13 @@ return [
             'fail' => [
                 'delete' => 'Couldn\'t delete status',
             ]
+        ],
+        'task' => [
+            'success' => [
+                'create' => 'Task created successfully',
+                'delete' => 'Task deleted successfully',
+                'update' => 'Task updated successfully',
+            ],
         ]
     ],
     'ujs' => [
