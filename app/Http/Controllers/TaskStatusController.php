@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Gate;
 
 class TaskStatusController extends Controller
 {
-    private const UNTOUCHABLE_STATUSES_ID = [1, 2, 3, 4];
-
     public function show()
     {
         abort(404);
@@ -70,9 +68,7 @@ class TaskStatusController extends Controller
     {
         Gate::authorize('delete', $taskStatus);
 
-        $exceptions = collect(self::UNTOUCHABLE_STATUSES_ID);
-
-        if (!$exceptions->contains($taskStatus->id)) {
+        if ($taskStatus->tasks()->count() === 0) {
             $taskStatus->delete();
 
             flash(__('messages.flash.status.success.delete'))->success();
