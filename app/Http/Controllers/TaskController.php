@@ -13,11 +13,14 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class TaskController extends Controller
 {
     public function show(Task $task): Factory|View|Application
     {
+        Gate::authorize('viewAny', Task::class);
+
         return view('tasks.show', compact('task'));
     }
 
@@ -30,6 +33,8 @@ class TaskController extends Controller
 
     public function create(): Factory|View|Application
     {
+        Gate::authorize('create', Task::class);
+
         $task = new Task();
 
         $users = User::all()->pluck('name', 'id');
@@ -40,6 +45,8 @@ class TaskController extends Controller
 
     public function store(TaskStoreRequest $request): RedirectResponse
     {
+        Gate::authorize('create', Task::class);
+
         $task = new Task();
         $this->fillTask($request, $task);
 
@@ -50,6 +57,8 @@ class TaskController extends Controller
 
     public function edit(Task $task): Factory|View|Application
     {
+        Gate::authorize('update', $task);
+
         $users = User::all()->pluck('name', 'id');
         $statuses = TaskStatus::all()->pluck('name', 'id');
 
@@ -58,6 +67,8 @@ class TaskController extends Controller
 
     public function update(TaskUpdateRequest $request, Task $task): RedirectResponse
     {
+        Gate::authorize('update', $task);
+
         $this->fillTask($request, $task);
 
         flash(__('messages.flash.task.success.update'))->success();
@@ -67,6 +78,8 @@ class TaskController extends Controller
 
     public function destroy(Task $task): RedirectResponse
     {
+        Gate::authorize('delete', Task::class);
+
         $task->delete();
 
         flash(__('messages.flash.task.success.delete'))->success();

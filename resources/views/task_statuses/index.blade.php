@@ -15,9 +15,9 @@
         <th>ID</th>
         <th>@lang('views.status.name')</th>
         <th class="col-md-2">@lang('views.status.created_at')</th>
-        @can(['update', 'delete'], $statuses->first())
+        @if(Auth::check())
             <th class="col-md-2">@lang('views.status.actions')</th>
-        @endcan
+        @endif
     </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@
         <td>{{ $status->id }}</td>
         <td>{{ $status->name }}</td>
         <td>{{ $status->created_at->format('d.m.Y') }}</td>
-        @can(['update', 'delete'], $status)
+        @canany(['update', 'delete'], $status)
         <td>
             <a class="text-danger text-decoration-none" href="{{ route('task_statuses.destroy', $status) }}"
                data-confirm="{{ __('messages.ujs.sure') }}" data-method="delete">@lang('views.buttons.delete')</a>
