@@ -11,25 +11,41 @@ return [
         'forgot_password' => 'Forgot Your Password?',
         'remember_me' => 'Remember Me',
     ],
+    'buttons' => [
+        'delete' => 'Delete',
+        'edit' => 'Edit',
+        'create' => 'Create',
+        'update' => 'Update',
+    ],
     'status' => [
         'title' => 'Task statuses',
+        'name' => 'Name',
+        'created_at' => 'Created at',
+        'actions' => 'Actions',
         'index' => [
             'create' => 'Create status',
-            'name' => 'Name',
-            'created_at' => 'Created at',
-            'actions' => 'Actions',
-            'destroy' => 'Delete',
-            'edit' => 'Edit',
         ],
         'create' => [
             'title' => 'Create status',
-            'name' => 'Name',
-            'submit' => 'Create'
         ],
         'edit' => [
             'title' => 'Edit status',
-            'name' => 'Name',
-            'submit' => 'Update'
         ],
     ],
+    'task' => [
+        'title' => 'Tasks',
+        'name' => 'Name',
+        'description' => 'Description',
+        'status' => 'Status',
+        'executor' => 'Executor',
+        'created_at' => 'Created at',
+        'author' => 'Author',
+        'actions' => 'Actions',
+        'create' => [
+            'title' => 'Create task',
+        ],
+        'edit' => [
+            'title' => 'Edit task',
+        ]
+    ]
 ];

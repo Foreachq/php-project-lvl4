@@ -32,9 +32,9 @@ class TaskStatusControllerAuthorizedTest extends TestCase
         $response = $this->get('/task_statuses/');
         $response->assertOk();
 
-        $response->assertSee(__('views.status.index.destroy'));
-        $response->assertSee(__('views.status.index.edit'));
-        $response->assertSee(__('views.status.index.create'));
+        $response->assertSee(__('views.buttons.delete'));
+        $response->assertSee(__('views.buttons.edit'));
+        $response->assertSee(__('views.buttons.create'));
 
         $response->assertSee('status');
     }

@@ -1,10 +1,17 @@
 <?php
 
 return [
-    'status' => [
-        'name' => [
-            'required' => 'This field is required',
-            'unique' => 'Status name already exists',
+    'form' => [
+        'required' => 'This field is required',
+        'status' => [
+            'name' => [
+                'unique' => 'Status name already exists',
+            ]
+        ],
+        'task' => [
+            'name' => [
+                'unique' => 'Task name already exists',
+            ]
         ]
     ],
     'flash' => [

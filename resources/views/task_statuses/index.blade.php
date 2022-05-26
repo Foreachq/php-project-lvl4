@@ -13,10 +13,10 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>@lang('views.status.index.name')</th>
-        <th class="col-md-2">@lang('views.status.index.created_at')</th>
+        <th>@lang('views.status.name')</th>
+        <th class="col-md-2">@lang('views.status.created_at')</th>
         @can(['update', 'delete'], $statuses->first())
-            <th class="col-md-2">@lang('views.status.index.actions')</th>
+            <th class="col-md-2">@lang('views.status.actions')</th>
         @endcan
     </tr>
     </thead>
@@ -29,10 +29,10 @@
         @can(['update', 'delete'], $status)
         <td>
             <a class="text-danger text-decoration-none" href="{{ route('task_statuses.destroy', $status) }}"
-               data-confirm="{{ __('messages.ujs.sure') }}" data-method="delete">@lang('views.status.index.destroy')</a>
+               data-confirm="{{ __('messages.ujs.sure') }}" data-method="delete">@lang('views.buttons.delete')</a>
             /
             <a class="text-decoration-none" href="{{ route('task_statuses.edit', $status) }}">
-                @lang('views.status.index.edit')</a>
+                @lang('views.buttons.edit')</a>
         </td>
         @endcan
     </tr>

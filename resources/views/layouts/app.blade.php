@@ -35,7 +35,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::url() === route('home') ? 'active' : '' }}" href="{{ route('home') }}">@lang('layouts.app.tasks')</a>
+                            <a class="nav-link {{ Request::url() === route('tasks.index') ? 'active' : '' }}" href="{{ route('tasks.index') }}">@lang('layouts.app.tasks')</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ Request::url() === route('task_statuses.index') ? 'active' : '' }}" href="{{ route('task_statuses.index') }}">@lang('layouts.app.statuses')</a>
