@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TaskStatusRequest;
+use App\Http\Requests\TaskStatusUpdateRequest;
+use App\Http\Requests\TaskStatusStoreRequest;
 use App\Models\TaskStatus;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -34,7 +35,7 @@ class TaskStatusController extends Controller
         return view('task_statuses.create', compact('status'));
     }
 
-    public function store(TaskStatusRequest $request): RedirectResponse
+    public function store(TaskStatusStoreRequest $request): RedirectResponse
     {
         Gate::authorize('create', TaskStatus::class);
 
@@ -54,7 +55,7 @@ class TaskStatusController extends Controller
         return view('task_statuses.edit', compact('taskStatus'));
     }
 
-    public function update(TaskStatusRequest $request, TaskStatus $taskStatus): RedirectResponse
+    public function update(TaskStatusUpdateRequest $request, TaskStatus $taskStatus): RedirectResponse
     {
         Gate::authorize('update', $taskStatus);
 

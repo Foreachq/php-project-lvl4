@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class TaskStatusRequest extends FormRequest
+class TaskStatusStoreRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -22,8 +22,8 @@ class TaskStatusRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => __('messages.status.name.required'),
-            'name.unique' => __('messages.status.name.unique'),
+            'name.required' => __('messages.form.required'),
+            'name.unique' => __('messages.form.status.name.unique'),
         ];
     }
 }
