@@ -10,12 +10,12 @@ class TaskStatusPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
         return true;
     }
 
-    public function view(User $user, TaskStatus $taskStatus): bool
+    public function view(?User $user, TaskStatus $taskStatus): bool
     {
         return true;
     }

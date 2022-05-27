@@ -10,7 +10,7 @@ class TaskPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
         return true;
     }
@@ -33,15 +33,5 @@ class TaskPolicy
     public function delete(User $user, Task $task): bool
     {
         return $task->creator()->is($user);
-    }
-
-    public function restore(User $user, Task $task): bool
-    {
-        return true;
-    }
-
-    public function forceDelete(User $user, Task $task): bool
-    {
-        return true;
     }
 }

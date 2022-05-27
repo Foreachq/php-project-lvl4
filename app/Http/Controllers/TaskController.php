@@ -7,6 +7,7 @@ use App\Http\Requests\TaskUpdateRequest;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
+use App\Services\TaskService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -17,24 +18,26 @@ use Illuminate\Support\Facades\Gate;
 
 class TaskController extends Controller
 {
+    public function __construct(
+        protected TaskService $taskService
+    ) {
+        $this->authorizeResource(Task::class);
+    }
+
     public function show(Task $task): Factory|View|Application
     {
-        Gate::authorize('viewAny', Task::class);
-
         return view('tasks.show', compact('task'));
     }
 
     public function index(): Factory|View|Application
     {
-        $tasks = Task::all();
+        $tasks = Task::all()->sortBy('id');
 
         return view('tasks.index', compact('tasks'));
     }
 
     public function create(): Factory|View|Application
     {
-        Gate::authorize('create', Task::class);
-
         $task = new Task();
 
         $users = User::all()->pluck('name', 'id');
@@ -45,13 +48,9 @@ class TaskController extends Controller
 
     public function store(TaskStoreRequest $request): RedirectResponse
     {
-        Gate::authorize('create', Task::class);
-
         $task = new Task();
-        $this->fillTask($request, $task);
-        $task->creator()->associate(Auth::user());
 
-        $task->save();
+        $this->taskService->updateTask($request, $task, Auth::user());
 
         flash(__('messages.flash.task.success.create'))->success();
 
@@ -60,8 +59,6 @@ class TaskController extends Controller
 
     public function edit(Task $task): Factory|View|Application
     {
-        Gate::authorize('update', $task);
-
         $users = User::all()->pluck('name', 'id');
         $statuses = TaskStatus::all()->pluck('name', 'id');
 
@@ -70,10 +67,7 @@ class TaskController extends Controller
 
     public function update(TaskUpdateRequest $request, Task $task): RedirectResponse
     {
-        Gate::authorize('update', $task);
-
-        $this->fillTask($request, $task);
-        $task->save();
+        $this->taskService->updateTask($request, $task);
 
         flash(__('messages.flash.task.success.update'))->success();
 
@@ -82,26 +76,10 @@ class TaskController extends Controller
 
     public function destroy(Task $task): RedirectResponse
     {
-        Gate::authorize('delete', $task);
-
         $task->delete();
 
         flash(__('messages.flash.task.success.delete'))->success();
 
         return redirect()->route('tasks.index');
-    }
-
-    public function fillTask(FormRequest $request, Task $task): void
-    {
-        $task->fill($request->all());
-
-        $statusId = $request->get('status_id');
-        $status = TaskStatus::find($statusId);
-
-        $executorId = $request->get('assigned_to_id');
-        $executor = TaskStatus::find($executorId);
-
-        $task->executor()->associate($executor);
-        $task->status()->associate($status);
     }
 }
