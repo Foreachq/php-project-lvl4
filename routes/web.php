@@ -12,3 +12,4 @@ Route::get('/lang/{lang}', [App\Http\Controllers\HomeController::class, 'changeL
 
 Route::resource('task_statuses', App\Http\Controllers\TaskStatusController::class);
 Route::resource('tasks', App\Http\Controllers\TaskController::class);
+Route::resource('labels', App\Http\Controllers\LabelController::class);
