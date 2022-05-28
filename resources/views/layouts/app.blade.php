@@ -41,7 +41,7 @@
                             <a class="nav-link {{ Request::url() === route('task_statuses.index') ? 'active' : '' }}" href="{{ route('task_statuses.index') }}">@lang('layouts.app.statuses')</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::url() === route('home') ? 'active' : '' }}" href="{{ route('home') }}">@lang('layouts.app.labels')</a>
+                            <a class="nav-link {{ Request::url() === route('labels.index') ? 'active' : '' }}" href="{{ route('labels.index') }}">@lang('layouts.app.labels')</a>
                         </li>
                     </ul>
 

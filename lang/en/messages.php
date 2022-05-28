@@ -8,6 +8,11 @@ return [
                 'unique' => 'Status name already exists',
             ]
         ],
+        'label' => [
+            'name' => [
+                'unique' => 'Label name already exists',
+            ]
+        ],
         'task' => [
             'name' => [
                 'unique' => 'Task name already exists',
@@ -23,6 +28,16 @@ return [
             ],
             'fail' => [
                 'delete' => 'Couldn\'t delete status',
+            ]
+        ],
+        'label' => [
+            'success' => [
+                'create' => 'Label created successfully',
+                'delete' => 'Label deleted successfully',
+                'update' => 'Label updated successfully',
+            ],
+            'fail' => [
+                'delete' => 'Couldn\'t delete label',
             ]
         ],
         'task' => [

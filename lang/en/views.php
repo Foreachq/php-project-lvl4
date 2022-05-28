@@ -50,5 +50,21 @@ return [
         'show' => [
             'title' => 'Task',
         ]
-    ]
+    ],
+    'label' => [
+        'title' => 'Labels',
+        'name' => 'Name',
+        'description' => 'Description',
+        'created_at' => 'Created at',
+        'actions' => 'Actions',
+        'index' => [
+            'create' => 'Create label',
+        ],
+        'create' => [
+            'title' => 'Create label',
+        ],
+        'edit' => [
+            'title' => 'Edit label',
+        ],
+    ],
 ];
