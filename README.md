@@ -6,4 +6,4 @@
 
 ## Demo
 
-Project demo can be viewed [<ins>**here**</ins>](http://foreachq-task-manager.herokuapp.com/).
+Project demo can be viewed [<ins>**here**</ins>](https://foreachq-task-manager.herokuapp.com/).
