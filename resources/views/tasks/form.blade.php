@@ -31,3 +31,9 @@
     {{ Form::label('assigned_to_id', __('views.task.executor')) }}
     {{ Form::select('assigned_to_id', $users->union(['' => '----------'])->sortKeys(), $task->executor->id ?? '', ['class' => 'form-control']) }}
 </div>
+
+<div class="form-group mb-3">
+    {{ Form::label('label_id', __('views.task.label')) }}
+    {{ Form::select('label_id', $labels->union(['' => ''])->sortKeys(), $task->labels()->pluck('label_id'),
+        ['name' => 'labels[]', 'multiple' => '', 'class' => 'form-control']) }}
+</div>

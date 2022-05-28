@@ -22,8 +22,7 @@ return new class extends Migration
             $table->foreign('status_id')
                 ->references('id')
                 ->on('task_statuses')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
+                ->onDelete('restrict');
 
             $table->integer('created_by_id');
             $table->foreign('created_by_id')

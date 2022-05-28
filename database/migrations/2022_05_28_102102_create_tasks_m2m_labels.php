@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('label_task', function (Blueprint $table) {
+        Schema::create('tasks_m2m_labels', function (Blueprint $table) {
             $table->id();
 
             $table->integer('label_id');
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('label_task');
+        Schema::dropIfExists('tasks_m2m_labels');
     }
 };

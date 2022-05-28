@@ -40,6 +40,7 @@ return [
         'executor' => 'Executor',
         'created_at' => 'Created at',
         'author' => 'Author',
+        'label' => 'Labels',
         'actions' => 'Actions',
         'create' => [
             'title' => 'Create task',

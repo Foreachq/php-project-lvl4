@@ -40,6 +40,7 @@ return [
         'executor' => 'Исполнитель',
         'created_at' => 'Дата создания',
         'author' => 'Автор',
+        'label' => 'Метки',
         'actions' => 'Действия',
         'create' => [
             'title' => 'Создать задачу',

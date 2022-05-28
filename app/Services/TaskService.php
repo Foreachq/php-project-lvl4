@@ -19,6 +19,14 @@ class TaskService
         $executorId = $request->get('assigned_to_id');
         $executor = TaskStatus::find($executorId);
 
+        $labelIds = collect($request->get('labels'));
+        $labelIds = $labelIds->filter();
+
+        $task->labels()->detach();
+        if ($labelIds->count() !== 0) {
+            $task->labels()->attach($labelIds);
+        }
+
         $task->executor()->associate($executor);
         $task->status()->associate($status);
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskStoreRequest;
 use App\Http\Requests\TaskUpdateRequest;
+use App\Models\Label;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
@@ -11,10 +12,8 @@ use App\Services\TaskService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 
 class TaskController extends Controller
 {
@@ -42,8 +41,9 @@ class TaskController extends Controller
 
         $users = User::all()->pluck('name', 'id');
         $statuses = TaskStatus::all()->pluck('name', 'id');
+        $labels = Label::all()->pluck('name', 'id');
 
-        return view('tasks.create', compact('task', 'users', 'statuses'));
+        return view('tasks.create', compact('task', 'users', 'statuses', 'labels'));
     }
 
     public function store(TaskStoreRequest $request): RedirectResponse
@@ -61,8 +61,9 @@ class TaskController extends Controller
     {
         $users = User::all()->pluck('name', 'id');
         $statuses = TaskStatus::all()->pluck('name', 'id');
+        $labels = Label::all()->pluck('name', 'id');
 
-        return view('tasks.edit', compact('task', 'users', 'statuses'));
+        return view('tasks.edit', compact('task', 'users', 'statuses', 'labels'));
     }
 
     public function update(TaskUpdateRequest $request, Task $task): RedirectResponse
