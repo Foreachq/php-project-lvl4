@@ -16,3 +16,5 @@ yarn-error.log
 /.phpunit.cache/
 /build/
 /coverage/
+/public/css/
+/public/js/
