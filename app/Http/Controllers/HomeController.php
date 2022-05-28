@@ -16,7 +16,7 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function changeLang($lang): RedirectResponse
+    public function changeLang(string $lang): RedirectResponse
     {
         App::setLocale($lang);
         Cookie::queue('lang', $lang, self::FIVE_YEARS_IN_MIN);

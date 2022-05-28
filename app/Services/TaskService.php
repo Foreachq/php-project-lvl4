@@ -14,15 +14,15 @@ class TaskService
     {
         $taskQuery = Task::query();
 
-        if (!empty($filter['status_id'])) {
+        if ($filter['status_id'] !== '') {
             $taskQuery = $taskQuery->where('status_id', $filter['status_id']);
         }
 
-        if (!empty($filter['created_by_id'])) {
+        if ($filter['created_by_id'] !== '') {
             $taskQuery = $taskQuery->where('created_by_id', $filter['created_by_id']);
         }
 
-        if (!empty($filter['assigned_to_id'])) {
+        if ($filter['assigned_to_id'] !== '') {
             $taskQuery = $taskQuery->where('assigned_to_id', $filter['assigned_to_id']);
         }
 
@@ -50,7 +50,7 @@ class TaskService
         $task->executor()->associate($executor);
         $task->status()->associate($status);
 
-        if ($creator) {
+        if ($creator !== null) {
             $task->creator()->associate($creator);
         }
 

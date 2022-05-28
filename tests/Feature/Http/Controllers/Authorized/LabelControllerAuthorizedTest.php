@@ -45,7 +45,7 @@ class LabelControllerAuthorizedTest extends TestCase
         ]);
         $response->assertOk();
 
-        $label = Label::where('id', 1)->get()->first();
+        $label = Label::where('id', 1)->first();
         $this->assertEquals('updatedLabel', $label->name);
     }
 

@@ -82,7 +82,7 @@ class TaskControllerAuthorizedTest extends TestCase
         ]);
         $response->assertOk();
 
-        $task = Task::where('id', '1')->get()->first();
+        $task = Task::where('id', '1')->first();
 
         $this->assertEquals('updatedTask', $task->name);
         $this->assertEquals(1, $task->labels->count());
@@ -100,7 +100,7 @@ class TaskControllerAuthorizedTest extends TestCase
         ]);
         $response->assertOk();
 
-        $task = Task::where('id', '2')->get()->first();
+        $task = Task::where('id', '2')->first();
         $this->assertEquals('updatedForeignTask', $task->name);
     }
 

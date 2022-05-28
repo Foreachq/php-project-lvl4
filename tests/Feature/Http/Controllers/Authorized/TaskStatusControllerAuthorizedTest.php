@@ -49,7 +49,7 @@ class TaskStatusControllerAuthorizedTest extends TestCase
         ]);
         $response->assertOk();
 
-        $status = TaskStatus::where('id', '5')->get()->first();
+        $status = TaskStatus::where('id', '5')->first();
         $this->assertEquals('updatedStatus', $status->name);
     }
 

@@ -42,8 +42,8 @@ class TaskController extends Controller
         $filter = array_merge(self::EMPTY_FILTER, $filter);
 
         $tasks = $this->taskService->filterTasks($filter);
-        $users = User::all()->pluck('name', 'id');
-        $statuses = TaskStatus::all()->pluck('name', 'id');
+        $users = User::pluck('name', 'id');
+        $statuses = TaskStatus::pluck('name', 'id');
 
         return view('tasks.index', compact('tasks', 'users', 'statuses', 'filter'));
     }
@@ -52,9 +52,9 @@ class TaskController extends Controller
     {
         $task = new Task();
 
-        $users = User::all()->pluck('name', 'id');
-        $statuses = TaskStatus::all()->pluck('name', 'id');
-        $labels = Label::all()->pluck('name', 'id');
+        $users = User::pluck('name', 'id');
+        $statuses = TaskStatus::pluck('name', 'id');
+        $labels = Label::pluck('name', 'id');
 
         return view('tasks.create', compact('task', 'users', 'statuses', 'labels'));
     }
@@ -72,9 +72,9 @@ class TaskController extends Controller
 
     public function edit(Task $task): Factory|View|Application
     {
-        $users = User::all()->pluck('name', 'id');
-        $statuses = TaskStatus::all()->pluck('name', 'id');
-        $labels = Label::all()->pluck('name', 'id');
+        $users = User::pluck('name', 'id');
+        $statuses = TaskStatus::pluck('name', 'id');
+        $labels = Label::pluck('name', 'id');
 
         return view('tasks.edit', compact('task', 'users', 'statuses', 'labels'));
     }
