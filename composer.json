@@ -1,8 +1,7 @@
 {
-    "name": "hexlet/code",
+    "name": "foreachq/task-manager",
     "type": "project",
     "description": "Task manager web-application",
-    "keywords": ["framework", "laravel"],
     "license": "MIT",
     "minimum-stability": "stable",
     "authors": [
