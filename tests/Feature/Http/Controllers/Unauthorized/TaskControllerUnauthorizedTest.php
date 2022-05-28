@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers;
+namespace Tests\Feature\Http\Controllers\Unauthorized;
 
-use App\Models\TaskStatus;
+use App\Models\Task;
 use Database\Seeders\DatabaseSeeder;
 use Tests\TestCase;
 
-class TaskStatusControllerUnauthorizedTest extends TestCase
+class TaskControllerUnauthorizedTest extends TestCase
 {
     protected function setUp(): void
     {
@@ -15,50 +15,59 @@ class TaskStatusControllerUnauthorizedTest extends TestCase
         $seeder = new DatabaseSeeder();
         $seeder->run();
 
-        TaskStatus::factory()
+        Task::factory()
             ->state([
-                'name' => 'status'
+                'name' => 'testTask',
+                'status_id' => '1',
             ])
             ->create();
     }
 
+    public function testShow(): void
+    {
+        $response = $this->get(route('tasks.show', 1));
+        $response->assertStatus(403);
+    }
+
     public function testIndex(): void
     {
-        $response = $this->get(route('task_statuses.index'));
+        $response = $this->get(route('tasks.index'));
         $response->assertOk();
 
         $response->assertDontSee(__('views.buttons.delete'));
         $response->assertDontSee(__('views.buttons.edit'));
         $response->assertDontSee(__('views.buttons.create'));
 
-        $response->assertSee('status');
+        $response->assertSee('testTask');
     }
 
     public function testUpdate(): void
     {
-        $response = $this->get(route('task_statuses.edit', 1));
+        $response = $this->get(route('tasks.edit', 1));
         $response->assertStatus(403);
 
-        $response = $this->patch(route('task_statuses.update', 1), [
-            'name' => 'updatedStatus'
+        $this->patch(route('tasks.update', 1), [
+            'name' => 'updatedTask',
+            'status_id' => '1'
         ]);
         $response->assertStatus(403);
     }
 
     public function testCreate(): void
     {
-        $response = $this->get(route('task_statuses.create'));
+        $response = $this->get(route('tasks.create'));
         $response->assertStatus(403);
 
-        $response = $this->post(route('task_statuses.store'), [
-            'name' => 'updatedStatus'
+        $response = $this->post(route('tasks.store'), [
+            'name' => 'newTask',
+            'status_id' => '1'
         ]);
         $response->assertStatus(403);
     }
 
     public function testDelete(): void
     {
-        $response = $this->delete(route('task_statuses.destroy', 1));
+        $response = $this->delete(route('tasks.destroy', 1));
         $response->assertStatus(403);
     }
 }

@@ -1,10 +1,12 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers;
+namespace Tests\Feature\Http\Controllers\Authorized;
 
+use App\Models\Label;
 use App\Models\Task;
 use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
@@ -19,6 +21,15 @@ class TaskControllerAuthorizedTest extends TestCase
 
         $user = User::factory()->create();
         Auth::login($user);
+
+        Label::factory()
+            ->count(4)
+            ->state(new Sequence(
+                ['name' => 'баг'],
+                ['name' => 'фича'],
+                ['name' => 'дубликат']
+            ))
+            ->create();
 
         Task::factory()
             ->state([
@@ -62,14 +73,20 @@ class TaskControllerAuthorizedTest extends TestCase
         $response = $this->get(route('tasks.edit', 1));
         $response->assertOk();
 
+        $label = Label::find(1);
+
         $this->patch(route('tasks.update', 1), [
             'name' => 'updatedTask',
-            'status_id' => '1'
+            'status_id' => '1',
+            'labels' => [$label->id],
         ]);
         $response->assertOk();
 
         $task = Task::where('id', '1')->get()->first();
+
         $this->assertEquals('updatedTask', $task->name);
+        $this->assertEquals(1, $task->labels->count());
+        $this->assertEquals($label->id, $task->labels[0]->id);
     }
 
     public function testUpdateForeignTask(): void

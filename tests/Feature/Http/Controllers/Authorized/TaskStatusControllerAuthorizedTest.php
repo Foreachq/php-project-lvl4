@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers;
+namespace Tests\Feature\Http\Controllers\Authorized;
 
 use App\Models\TaskStatus;
 use App\Models\User;
