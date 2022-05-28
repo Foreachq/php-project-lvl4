@@ -3,7 +3,26 @@
 @section('content')
     <h1 class="mb-5">@lang('views.task.title')</h1>
     <div class="d-flex mb-3">
-        <div class="ms-auto">
+        <div class="w-75">
+            {{ Form::open(['route' => 'tasks.index', 'method' => 'GET']) }}
+                <div class="row g-1">
+                    <div class="col">
+                        {{ Form::select('filter[status_id]', $statuses->union(['' => __('views.task.status')])->sortKeys(), $filter['status_id'], ['class' => 'form-select me-2']) }}
+                    </div>
+                    <div class="col">
+                        {{ Form::select('filter[created_by_id]', $users->union(['' => __('views.task.author')])->sortKeys(), $filter['created_by_id'], ['class' => 'form-select me-2']) }}
+                    </div>
+                    <div class="col">
+                        {{ Form::select('filter[assigned_to_id]', $users->union(['' => __('views.task.executor')])->sortKeys(), $filter['assigned_to_id'], ['class' => 'form-select me-2']) }}
+                    </div>
+                    <div class="col">
+                        {{ Form::submit(__('views.buttons.submit'), ['class' => 'btn btn-outline-primary me-2']) }}
+                        <a class="btn btn-outline-dark" href="{{ route('tasks.index') }}" role="button">@lang('views.buttons.resetFilter')</a>
+                    </div>
+                </div>
+            {{ Form::close() }}
+        </div>
+        <div class="ms-auto align-self-end">
             @can('create', App\Models\Task::class)
             <a href="{{ route('tasks.create') }}" class="btn btn-primary ml-auto">
                 @lang('views.task.create.title')

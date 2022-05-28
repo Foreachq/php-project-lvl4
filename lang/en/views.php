@@ -16,6 +16,8 @@ return [
         'edit' => 'Edit',
         'create' => 'Create',
         'update' => 'Update',
+        'submit' => 'Filter',
+        'resetFilter' => 'Reset',
     ],
     'status' => [
         'title' => 'Task statuses',

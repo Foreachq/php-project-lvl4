@@ -14,9 +14,16 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    private const EMPTY_FILTER = [
+        'status_id' => '',
+        'created_by_id' => '',
+        'assigned_to_id' => ''
+    ];
+
     public function __construct(
         protected TaskService $taskService
     ) {
@@ -28,11 +35,17 @@ class TaskController extends Controller
         return view('tasks.show', compact('task'));
     }
 
-    public function index(): Factory|View|Application
+    public function index(Request $request): Factory|View|Application
     {
-        $tasks = Task::all()->sortBy('id');
+        $filter = $request->input('filter', []);
+        $filter = array_filter($filter);
+        $filter = array_merge(self::EMPTY_FILTER, $filter);
 
-        return view('tasks.index', compact('tasks'));
+        $tasks = $this->taskService->filterTasks($filter);
+        $users = User::all()->pluck('name', 'id');
+        $statuses = TaskStatus::all()->pluck('name', 'id');
+
+        return view('tasks.index', compact('tasks', 'users', 'statuses', 'filter'));
     }
 
     public function create(): Factory|View|Application
