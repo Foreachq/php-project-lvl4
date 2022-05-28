@@ -2,8 +2,8 @@
 
 return [
     'auth' => [
-        'login' => 'Вход',
-        'register' => 'Регистрация',
+        'login' => 'Войти',
+        'register' => 'Зарегистрировать',
         'name' => 'Имя',
         'email' => 'Email',
         'password' => 'Пароль',

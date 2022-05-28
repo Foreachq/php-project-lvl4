@@ -2,8 +2,8 @@
 
 return [
     'auth' => [
-        'login' => 'Login',
-        'register' => 'Sign Up',
+        'login' => 'Sign In',
+        'register' => 'Register',
         'name' => 'Name',
         'email' => 'Email',
         'password' => 'Password',
