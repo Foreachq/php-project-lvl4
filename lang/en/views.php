@@ -14,6 +14,7 @@ return [
         'password_confirm' => 'Confirmation',
         'forgot_password' => 'Forgot Your Password?',
         'remember_me' => 'Remember Me',
+        'test_user' => 'Login as test user',
     ],
     'buttons' => [
         'delete' => 'Delete',

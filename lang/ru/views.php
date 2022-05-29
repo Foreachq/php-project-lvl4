@@ -14,6 +14,7 @@ return [
         'password_confirm' => 'Подтверждение',
         'forgot_password' => 'Забыли пароль?',
         'remember_me' => 'Запомнить меня',
+        'test_user' => 'Войти как тестовый пользователь',
     ],
     'buttons' => [
         'delete' => 'Удалить',

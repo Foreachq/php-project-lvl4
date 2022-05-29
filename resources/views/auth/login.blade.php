@@ -46,22 +46,29 @@
                                 <label class="form-check-label" for="remember">
                                     @lang('views.auth.remember_me')
                                 </label>
+                                <span class="float-end">
+                                    @if (Route::has('password.request'))
+                                    <a class="" href="{{ route('password.request') }}">
+                                        @lang('views.auth.forgot_password')
+                                    </a>
+                                    @endif
+                                </span>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row mb-0">
+                    <div class="row mb-3">
                         <div class="col-md-8 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
+                            <span class="me-2"><button type="submit" class="btn btn-primary">
                                 @lang('views.auth.login')
-                            </button>
+                            </button></span>
 
-                            @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    @lang('views.auth.forgot_password')
-                                </a>
-                            @endif
+                            <a class="btn btn-outline-secondary" href="{{ route('login.test') }}">
+                                @lang('views.auth.test_user')
+                            </a>
                         </div>
+                    </div>
+                    <div class="row mb-0">
+
                     </div>
                 </form>
             </div>
