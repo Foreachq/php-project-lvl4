@@ -48,6 +48,7 @@ return [
         'author' => 'Author',
         'label' => 'Labels',
         'actions' => 'Actions',
+        'filter' => 'Filter',
         'create' => [
             'title' => 'Create task',
         ],

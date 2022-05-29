@@ -4,6 +4,7 @@
     <h1 class="mb-5">@lang('views.task.title')</h1>
     <div class="d-flex mb-3">
         <div class="w-75">
+            <p class="mb-1">@lang('views.task.filter'):</p>
             {{ Form::open(['route' => 'tasks.index', 'method' => 'GET']) }}
                 <div class="row g-1">
                     <div class="col">
