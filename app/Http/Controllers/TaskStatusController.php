@@ -24,7 +24,7 @@ class TaskStatusController extends Controller
 
     public function index(): Application|Factory|View
     {
-        $statuses = TaskStatus::all()->sortBy('id');
+        $statuses = TaskStatus::orderBy('id')->get();
 
         return view('task_statuses.index', compact('statuses'));
     }

@@ -24,7 +24,7 @@ class LabelController extends Controller
 
     public function index(): Application|Factory|View
     {
-        $labels = Label::all()->sortBy('id');
+        $labels = Label::orderBy('id')->get();
 
         return view('labels.index', compact('labels'));
     }
