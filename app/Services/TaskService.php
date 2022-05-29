@@ -5,12 +5,12 @@ namespace App\Services;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Collection;
 
 class TaskService
 {
-    public function filterTasks(array $filter): Collection
+    public function filterTasks(array $filter): LengthAwarePaginator
     {
         $taskQuery = Task::query();
 
@@ -26,7 +26,7 @@ class TaskService
             $taskQuery = $taskQuery->where('assigned_to_id', $filter['assigned_to_id']);
         }
 
-        return $taskQuery->get()->sortBy('id');
+        return $taskQuery->orderBy('id')->paginate(10);
     }
 
     public function updateTask(FormRequest $request, Task $task, Authenticatable $creator = null): void
