@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'home' => [
+        'welcome' => 'Welcome',
+        'description' => 'Login or Sign Up to get full access to the site',
+    ],
     'auth' => [
         'login' => 'Sign In',
         'register' => 'Register',
