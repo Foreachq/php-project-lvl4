@@ -20,7 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -95,6 +95,14 @@
             @include('flash::message')
             @yield('content')
         </main>
+
     </div>
+    <footer class="mt-auto border-top py-3 flex-shrink-0">
+        <div class="container-lg">
+            <div class="text-center">
+                <a href="https://github.com/Foreachq/task-manager" target="_blank">Site source code</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
