@@ -24,12 +24,7 @@ class LoginController extends Controller
     {
         $testUser = User::where('email', 'testUser@email.com')->first();
         if ($testUser === null) {
-            $testUser = User::factory()
-                ->state([
-                    'name' => 'Test User',
-                    'email' => 'testUser@email.com',
-                ])
-                ->create();
+            abort(404, 'Test user not found');
         }
 
         Auth::login($testUser);
