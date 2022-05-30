@@ -19,6 +19,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/';
 
+    private const APP_LOCALES = ['ru', 'en'];
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *
@@ -40,6 +42,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->pattern('task', '[0-9]+');
         $this->pattern('task_status', '[0-9]+');
         $this->pattern('label', '[0-9]+');
+        $this->pattern('lang', join('|', self::APP_LOCALES));
     }
 
     /**
