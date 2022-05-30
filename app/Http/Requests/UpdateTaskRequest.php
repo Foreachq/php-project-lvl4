@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class UpdateLabelRequest extends FormRequest
+class UpdateTaskRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -15,15 +15,15 @@ class UpdateLabelRequest extends FormRequest
 
     public function rules(): array
     {
-        $label = $this->route('label');
+        $task = $this->route('task');
 
         return [
             'name' => [
                 'required',
                 'max:255',
-                Rule::unique('labels')->ignore($label->id),
+                Rule::unique('tasks')->ignore($task->id),
             ],
-            'description' => 'max:512',
+            'status_id' => 'required',
         ];
     }
 
@@ -31,7 +31,8 @@ class UpdateLabelRequest extends FormRequest
     {
         return [
             'name.required' => __('messages.form.required'),
-            'name.unique' => __('messages.form.label.name.unique'),
+            'name.unique' => __('messages.form.task.name.unique'),
+            'status_id.required' => __('messages.form.required'),
         ];
     }
 }

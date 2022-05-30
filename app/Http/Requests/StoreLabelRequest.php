@@ -15,7 +15,8 @@ class StoreLabelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:labels',
+            'name' => 'required|unique:labels|max:255',
+            'description' => 'max:512',
         ];
     }
 

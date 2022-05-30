@@ -4,9 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 
-class TaskUpdateRequest extends FormRequest
+class StoreTaskStatusRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -15,14 +14,8 @@ class TaskUpdateRequest extends FormRequest
 
     public function rules(): array
     {
-        $task = $this->route('task');
-
         return [
-            'name' => [
-                'required',
-                Rule::unique('tasks')->ignore($task->id),
-            ],
-            'status_id' => 'required',
+            'name' => 'required|unique:task_statuses|max:255',
         ];
     }
 
@@ -30,8 +23,7 @@ class TaskUpdateRequest extends FormRequest
     {
         return [
             'name.required' => __('messages.form.required'),
-            'name.unique' => __('messages.form.task.name.unique'),
-            'status_id.required' => __('messages.form.required'),
+            'name.unique' => __('messages.form.status.name.unique'),
         ];
     }
 }

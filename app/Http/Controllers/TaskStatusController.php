@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TaskStatusUpdateRequest;
-use App\Http\Requests\TaskStatusStoreRequest;
+use App\Http\Requests\UpdateTaskStatusRequest;
+use App\Http\Requests\StoreTaskStatusRequest;
 use App\Models\TaskStatus;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -36,7 +36,7 @@ class TaskStatusController extends Controller
         return view('task_statuses.create', compact('status'));
     }
 
-    public function store(TaskStatusStoreRequest $request): RedirectResponse
+    public function store(StoreTaskStatusRequest $request): RedirectResponse
     {
         $status = new TaskStatus();
         $status->fill($request->all());
@@ -52,7 +52,7 @@ class TaskStatusController extends Controller
         return view('task_statuses.edit', compact('taskStatus'));
     }
 
-    public function update(TaskStatusUpdateRequest $request, TaskStatus $taskStatus): RedirectResponse
+    public function update(UpdateTaskStatusRequest $request, TaskStatus $taskStatus): RedirectResponse
     {
         $taskStatus->fill($request->all());
         $taskStatus->save();

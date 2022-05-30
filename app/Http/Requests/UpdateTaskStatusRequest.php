@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class TaskStatusUpdateRequest extends FormRequest
+class UpdateTaskStatusRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -20,6 +20,7 @@ class TaskStatusUpdateRequest extends FormRequest
         return [
             'name' => [
                 'required',
+                'max:255',
                 Rule::unique('task_statuses')->ignore($taskStatus->id),
             ]
         ];

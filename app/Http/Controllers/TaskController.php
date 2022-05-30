@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TaskStoreRequest;
-use App\Http\Requests\TaskUpdateRequest;
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Label;
 use App\Models\Task;
 use App\Models\TaskStatus;
@@ -59,7 +59,7 @@ class TaskController extends Controller
         return view('tasks.create', compact('task', 'users', 'statuses', 'labels'));
     }
 
-    public function store(TaskStoreRequest $request): RedirectResponse
+    public function store(StoreTaskRequest $request): RedirectResponse
     {
         $task = new Task();
 
@@ -79,7 +79,7 @@ class TaskController extends Controller
         return view('tasks.edit', compact('task', 'users', 'statuses', 'labels'));
     }
 
-    public function update(TaskUpdateRequest $request, Task $task): RedirectResponse
+    public function update(UpdateTaskRequest $request, Task $task): RedirectResponse
     {
         $this->taskService->updateTask($request, $task);
 
