@@ -8,6 +8,8 @@ services:
         volumes:
             - '.:/app'
             - '/app/vendor/'
+            - '/app/public/'
+            - '/app/node_modules/'
         depends_on:
             - pgsql
     pgsql:
