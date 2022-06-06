@@ -19,12 +19,14 @@ return new class extends Migration
             $table->integer('label_id');
             $table->foreign('label_id')
                 ->references('id')
-                ->on('labels');
+                ->on('labels')
+                ->onDelete('restrict');
 
             $table->integer('task_id');
             $table->foreign('task_id')
                 ->references('id')
-                ->on('tasks');
+                ->on('tasks')
+                ->onDelete('cascade');
         });
     }
 
