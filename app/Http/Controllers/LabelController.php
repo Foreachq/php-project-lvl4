@@ -17,11 +17,6 @@ class LabelController extends Controller
         $this->authorizeResource(Label::class);
     }
 
-    public function show(): void
-    {
-        abort(404);
-    }
-
     public function index(): Application|Factory|View
     {
         $labels = Label::orderBy('id')->get();

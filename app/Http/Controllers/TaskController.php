@@ -13,17 +13,10 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    private const EMPTY_FILTER = [
-        'status_id' => '',
-        'created_by_id' => '',
-        'assigned_to_id' => ''
-    ];
-
     public function __construct(
         protected TaskService $taskService
     ) {
@@ -39,7 +32,7 @@ class TaskController extends Controller
     {
         $filter = $request->input('filter', []);
         $filter = array_filter($filter);
-        $filter = array_merge(self::EMPTY_FILTER, $filter);
+        $filter = array_merge(TaskService::FILTER_FIELDS, $filter);
 
         $tasks = $this->taskService->filterTasks($filter);
         $users = User::pluck('name', 'id');
@@ -61,9 +54,7 @@ class TaskController extends Controller
 
     public function store(StoreTaskRequest $request): RedirectResponse
     {
-        $task = new Task();
-
-        $this->taskService->updateTask($request, $task, Auth::user());
+        $this->taskService->createTask($request);
 
         flash(__('messages.flash.task.success.create'))->success();
 

@@ -17,11 +17,6 @@ class TaskStatusController extends Controller
         $this->authorizeResource(TaskStatus::class);
     }
 
-    public function show(): void
-    {
-        abort(404);
-    }
-
     public function index(): Application|Factory|View
     {
         $statuses = TaskStatus::orderBy('id')->get();
