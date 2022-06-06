@@ -7,9 +7,16 @@ use App\Models\TaskStatus;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TaskService
 {
+    public const FILTER_FIELDS = [
+        'status_id' => '',
+        'created_by_id' => '',
+        'assigned_to_id' => ''
+    ];
+
     public function filterTasks(array $filter): LengthAwarePaginator
     {
         $taskQuery = Task::query();
@@ -57,5 +64,11 @@ class TaskService
         }
 
         $task->save();
+    }
+
+    public function createTask(FormRequest $request): void
+    {
+        $task = new Task();
+        $this->updateTask($request, $task, Auth::user());
     }
 }
